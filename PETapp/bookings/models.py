@@ -6,7 +6,7 @@ from PETapp.database import Base
 class Bookings(Base):
     __tablename__ = "bookings"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, nullable=False)
     room_id = Column(ForeignKey("rooms.id"))
     user_id = Column(ForeignKey("users.id"))
     date_from = Column(Date, nullable=False)

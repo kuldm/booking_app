@@ -24,4 +24,4 @@ async def get_all_rooms():
             description="This method returns all roms in one hotel",
             )
 async def get_rooms(hotel_id: int):
-    return await RoomsService.find_all_by_id(hotel_id)
+    return await RoomsService.find_all_rooms_by_hotel_id(hotel_id)

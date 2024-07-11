@@ -1,7 +1,7 @@
+from sqlalchemy import select, and_, or_, func, insert
 from datetime import date
 
 from PETapp.database import async_session_maker, engine
-from sqlalchemy import select, and_, or_, func, insert
 from PETapp.bookings.models import Bookings
 from PETapp.hotels.rooms.models import Rooms
 from PETapp.services.base import BaseService
@@ -54,7 +54,8 @@ class BookingService(BaseService):
             ).where(Rooms.id == room_id).group_by(
                 Rooms.quantity, booked_rooms.c.room_id
             )
-            print(get_rooms_left.compile(engine, compile_kwargs={"literal_binds": True}))
+            # Этот принт перерводит показывает
+            # print(get_rooms_left.compile(engine, compile_kwargs={"literal_binds": True}))
 
             rooms_left = await session.execute(get_rooms_left)
             rooms_left: int = rooms_left.scalar()

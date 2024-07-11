@@ -1,4 +1,5 @@
 from datetime import date
+from typing import List
 
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy import Date
@@ -16,7 +17,9 @@ router = APIRouter(
 )
 
 
-@router.get("")
+@router.get("",
+            response_model=List[SBooking],
+            description="This method returns a list of all bookings")
 async def get_bookings(user: Users = Depends(get_current_user)):  # -> list[SBooking]:
     return await BookingService.find_all(user_id=user.id)
 

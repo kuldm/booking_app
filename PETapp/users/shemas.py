@@ -2,5 +2,9 @@ from pydantic import BaseModel, EmailStr
 
 
 class SUserAuth(BaseModel):
+    id: int
     email: EmailStr
-    password: str
+    hashed_password: str
+
+    class Config:
+        from_attributes = True
